@@ -1,8 +1,7 @@
 // DisplayGiphy component
 
 const DisplayGiphy = (props) => {
-   console.log(props.giphyResult);
-
+   // console.log(props.giphyResult);
    return (
       <section>
          <h2>GIF ME!</h2>
@@ -27,7 +26,6 @@ const DisplayGiphy = (props) => {
          }
       </section>
    )
-
 }
 
 export default DisplayGiphy;

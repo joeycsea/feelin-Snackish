@@ -6,6 +6,7 @@ const Form = (props) => {
    // changing values of the select drop downs
    const [ cuisineSelect, setCuisineSelect ] = useState("placeholder");
    const [ moodSelect, setMoodSelect ] = useState("placeholder");
+   const [ cuisineTypeSelect, setCuisineTypeSelect ] = useState("placeholder");
 
 
    const handleCuisineChange = (event) => {
@@ -16,21 +17,25 @@ const Form = (props) => {
       setMoodSelect(event.target.value);
    }
 
+   const handleCuisineTypeChange = (event) => {
+      setCuisineTypeSelect(event.target.value);
+   }
+
 
    return (
       <section>
          <form action="submit" 
-            onSubmit={ (event) => {props.handleSubmit(event, cuisineSelect, moodSelect)} }
+            onSubmit={ (event) => {props.handleSubmit(event, cuisineSelect, moodSelect, cuisineTypeSelect)} }
          >
 
-            <label htmlFor="recipies">Your snack awaits:</label>
+            <label htmlFor="recipies">Select a cuisine:</label>
                <select 
                   name="recipies" 
                   id="recipies" 
                   onChange={ handleCuisineChange } 
                   value={ cuisineSelect }
                >
-                  <option value="placeholder" defaultValue disabled>Select a cuisine</option>
+                  <option value="placeholder" defaultValue disabled>Cuisine type</option>
                   <option value="african">African</option>
                   <option value="american">American</option>
                   <option value="british">British</option>
@@ -56,7 +61,20 @@ const Form = (props) => {
                   <option value="vietnamese">Vietnamese</option>
                </select>
 
-            <label htmlFor="giphy">How are you feeling now?</label>
+            <label htmlFor="recipies">Select a meal type:</label>
+               <select 
+                  name="recipieType" 
+                  id="recipieType" 
+                  onChange={ handleCuisineTypeChange } 
+                  value={ cuisineTypeSelect }
+               >
+                  <option value="placeholder" defaultValue disabled>Meal type</option>
+                  <option value="breakfast">Breakfast</option>
+                  <option value="main dish">Main course</option>
+                  <option value="dessert">Dessert</option>
+               </select>
+
+            <label htmlFor="giphy">For fun: How are you feeling?</label>
                <select 
                   name="giphy" 
                   id="giphy" 
@@ -64,10 +82,6 @@ const Form = (props) => {
                   value={ moodSelect }
                >
                   <option value="placeholder" defaultValue disabled >Select your mood</option>
-                  <option value="anxious">Anxious</option>
-                  <option value="annoyed">Annoyed</option>
-                  <option value="angry">Angry</option>
-                  <option value="bored">Bored</option>
                   <option value="calm">Calm</option>
                   <option value="contempt">Contempt</option>
                   <option value="chill">Chill</option>
@@ -81,9 +95,8 @@ const Form = (props) => {
                   <option value="relief">Relieved</option>
                   <option value="snack">Snackish</option>
                   <option value="surprised">Surprised</option>
-                  <option value="sad">Sad</option>
                </select>
-               <button>It's Snack Time!</button>
+               <button>It's Food Time!</button>
          </form>
       </section>
    )
