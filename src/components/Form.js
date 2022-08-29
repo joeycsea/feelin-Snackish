@@ -36,7 +36,6 @@ const Form = (props) => {
                   value={ cuisineSelect }
                >
                   <option value="placeholder" defaultValue disabled>Cuisine type</option>
-                  <option value="african">African</option>
                   <option value="american">American</option>
                   <option value="british">British</option>
                   <option value="caribbean">Caribbean</option>
@@ -54,14 +53,13 @@ const Form = (props) => {
                   <option value="mediterranean">Mediterranean</option>
                   <option value="mexican">Mexican</option>
                   <option value="middle eastern">Middle Eastern</option>
-                  <option value="nordic">Nordic</option>
                   <option value="southern">Southern</option>
                   <option value="spanish">Spanish</option>
                   <option value="thai">Thai</option>
                   <option value="vietnamese">Vietnamese</option>
                </select>
 
-            <label htmlFor="recipies">Select a meal type:</label>
+            <label htmlFor="recipieType">Select a meal type:</label>
                <select 
                   name="recipieType" 
                   id="recipieType" 

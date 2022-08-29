@@ -3,7 +3,7 @@
 const Footer = () => {
    return (
       <footer>
-         <p>Created by Joey with 🤍</p>
+         <p>Created by <a href="https://www.joeysea.com/">Joey</a> with 🤍</p>
       </footer>
    )
 }

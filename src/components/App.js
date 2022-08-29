@@ -1,4 +1,4 @@
-import './App.css';
+import '../App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Header from './Header';
@@ -7,10 +7,6 @@ import DisplayRecipies from './DisplayRecipies';
 import DisplayGiphy from './DisplayGiphy';
 import Footer from './Footer';
 
-// User selects from a dropdown of 23 different types of cuisine and meal type
-// User also selects their current mood
-// Once they hit submit, take the values and run Axios call to Spoonacular and Giphy
-// Max of 5 recipies and 2 square GIFs will appear on the page
 
 function App() {
 
@@ -26,7 +22,7 @@ function App() {
   // SPOONACULAR API
   useEffect(() => {
 
-    if(recipieChoice && recipieTypeChoice !== "placeholder")  {
+    if(recipieChoice && recipieTypeChoice !== "placeholder" && moodChoice !== "placeholder")  {
       axios ({
         url: 'https://api.spoonacular.com/recipes/complexSearch',
         method: 'GET',
@@ -34,13 +30,16 @@ function App() {
           apiKey: '7e023ad63716408fabb7225df59ccb60',
           query: recipieChoice,
           type: recipieTypeChoice,
+          // cuisine: recipieChoice,
           addRecipeInformation: true,
           addRecipeNutrition: true,
           number: 5
         }
       }).then ((apiData) => {
-        // console.log(apiData);
+        console.log(apiData.data.results);
         setRecipies(apiData.data.results);
+      }).catch((error) => {
+        alert('Oh no! No recipies here!')
       })
     }
   }, [recipieChoice, recipieTypeChoice]);
@@ -48,7 +47,7 @@ function App() {
 
   // GIPHY API
   useEffect(() => {
-    if(moodChoice !== "placeholder") {
+    if(recipieChoice && recipieTypeChoice !== "placeholder" && moodChoice !== "placeholder") {
       axios ({
         url: 'http://api.giphy.com/v1/gifs/search',
         method: 'GET',
@@ -56,7 +55,7 @@ function App() {
           api_key: '4BpMgTs2iCJeLAnRhfBfNYcr2iMjaRCW',
           q: moodChoice,
           rating: 'g',
-          limit: 2
+          limit: 3
         }
       }).then ((apiGiphyData) => {
         // console.log(apiGiphyData);
@@ -80,8 +79,8 @@ function App() {
       <div className="wrapper">
         <Header />
         <Form handleSubmit={selectRecipieAndGiphy} />
-        <DisplayRecipies recipiesResult={recipies}/>
-        <DisplayGiphy giphyResult={giphy} />
+        <DisplayGiphy giphy={giphy} />
+        <DisplayRecipies recipies={recipies} recipieChoice={recipieChoice} recipieTypeChoice={recipieTypeChoice}/>
       </div>
         <Footer />
     </div>
